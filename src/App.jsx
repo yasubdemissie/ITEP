@@ -3,6 +3,9 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  Cell,
+  Legend,
+  Pie,
   PieChart,
   ResponsiveContainer,
   Tooltip,
@@ -13,36 +16,50 @@ import {
 function App() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
+  const [pieData, setPieData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   const options = { year: "numeric", month: "short", weekday: "short" };
 
-  function callback(err, data) {
-    if (err) {
-      console.error(err);
-    } else {
-      setData( data => data.map(element => {
-        return {...element, date: new Date(element.date).toLocaleDateString("en-US", options)}
-      }))
-  }
+  // function callBack(err, data) {
+  //   if (err) {
+  //     setError(err);
+  //   } else {
+  //     setData( data => data.map(element => {
+  //       return {...element, date: new Date(element.date).toLocaleDateString("en-US", options)}
+  //     }))
+  // }
 
   useEffect(() => {
     setIsLoading(true);
-    async function getData(callback) {
+    async function getData(callBack) {
       try {
-        const response = await fetch(`http://localhost:3500/${callback}`);
+        const response = await fetch(`http://localhost:3500/${callBack}`);
         if (!response.ok) setError("Error fetching data");
         const data = await response.json();
-        callback(error, data);
+        if (callBack === "data") setData(data);
+        else setPieData(data);
+
+        console.log(data);
       } catch (e) {
         setError(e);
       }
     }
 
     getData("data");
+
+    getData("pieData");
     setIsLoading(false);
   }, []);
+
+  if (error)
+    return (
+      <div className="text-red-500 flex items-center justify-center p-16 bg-red-300/15">
+        There is an Error Loding the Data
+      </div>
+    );
 
   return (
     <main
@@ -58,6 +75,27 @@ function App() {
             </p>
           ))}
         </div>
+        <PieChart width={800} height={400}>
+          <Pie
+            data={pieData}
+            cx={120}
+            cy={200}
+            innerRadius={60}
+            outerRadius={100}
+            fill="#8884d8"
+            paddingAngle={5}
+            dataKey="value"
+            legendType="circle"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Legend />
+        </PieChart>
         <ResponsiveContainer width="100%" height={200}>
           <AreaChart
             width={730}
@@ -96,11 +134,33 @@ function App() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <ResponsiveContainer>
-        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-
-        </PieChart>
-      </ResponsiveContainer>
+      {/* <ResponsiveContainer> */}
+      {/* <PieChart
+          width={800}
+          height={400}
+          // onMouseEnter={this.onPieEnter}
+        >
+          <Pie
+            data={pieData}
+            cx={420}
+            cy={200}
+            startAngle={180}
+            endAngle={0}
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={5}
+            dataKey="name"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart> */}
+      {/* </ResponsiveContainer> */}
     </main>
   );
 }

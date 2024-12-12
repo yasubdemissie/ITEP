@@ -51,6 +51,24 @@
       "date": "2013-01-05"
     }
   ],
+  "pieData": [
+    {
+      "name": "Energy Generated",
+      "value": 12.5
+    },
+    {
+      "name": "Energy Consumed",
+      "value": 5.5
+    },
+    {
+      "name": "Energy Stored",
+      "value": 7
+    },
+    {
+      "name": "Energy Wasted",
+      "value": 0.5
+    }
+  ],
   "commands": {
     "command": "set_light_schedule",
     "light_start_time": "18:00",
