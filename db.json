@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "step_counter": 12345,
+      "battery_status": "full",
+      "battery_percentage": 85,
+      "energy_generated": 12.5,
+      "light_intensity": 320,
+      "proximity_alert": true,
+      "error_logs": [],
+      "date": "2013-01-01"
+    },
+    {
+      "step_counter": 12345,
+      "battery_status": "full",
+      "battery_percentage": 85,
+      "energy_generated": 14.5,
+      "light_intensity": 320,
+      "proximity_alert": true,
+      "error_logs": [],
+      "date": "2013-01-02"
+    },
+    {
+      "step_counter": 12345,
+      "battery_status": "full",
+      "battery_percentage": 85,
+      "energy_generated": 18.5,
+      "light_intensity": 320,
+      "proximity_alert": true,
+      "error_logs": [],
+      "date": "2013-01-03"
+    },
+    {
+      "step_counter": 12345,
+      "battery_status": "full",
+      "battery_percentage": 85,
+      "energy_generated": 13.5,
+      "light_intensity": 320,
+      "proximity_alert": true,
+      "error_logs": [],
+      "date": "2013-01-04"
+    },
+    {
+      "step_counter": 12345,
+      "battery_status": "full",
+      "battery_percentage": 85,
+      "energy_generated": 22.5,
+      "light_intensity": 320,
+      "proximity_alert": true,
+      "error_logs": [],
+      "date": "2013-01-05"
+    }
+  ],
+  "commands": {
+    "command": "set_light_schedule",
+    "light_start_time": "18:00",
+    "light_duration": 3600
+  }
+}
