@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import PieChartComp from "../Components/PieChartComp";
 import AreaChartComp from "../Components/AreaChart";
+import BarChartComp from "../Components/BarChartComp";
 function App() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
@@ -64,6 +65,7 @@ function App() {
           ))}
         </div>
         <PieChartComp Data={pieData} />
+        <BarChartComp data={data} />
         <AreaChartComp data={data} />
       </div>
     </main>
