@@ -1,9 +1,11 @@
+import Statistics from "../Components/Statistics";
+
 function Dashboard() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <div>
+      <Statistics />
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
