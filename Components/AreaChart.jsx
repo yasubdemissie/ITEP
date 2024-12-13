@@ -8,13 +8,27 @@ import {
   YAxis,
 } from "recharts";
 import propType from "prop-types";
+import { useState } from "react";
+import { useEffect } from "react";
 function AreaChartComp({ data }) {
+  const [updatedData, setUpdatedData] = useState([]);
+
+  useEffect(() => {
+    const options = { weekday: "short", month: "short" };
+    setUpdatedData(
+      data.map((item) => ({
+        ...item,
+        date: new Date(item.date).toLocaleDateString("en-US", options),
+      }))
+    );
+  }, [data]);
+
   return (
-    <ResponsiveContainer width={500} height={200}>
+    <ResponsiveContainer style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)" }} width={500} height={200}>
       <AreaChart
         width={730}
         height={200}
-        data={data}
+        data={updatedData}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>

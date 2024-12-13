@@ -18,7 +18,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const options = { year: "numeric", month: "short", weekday: "short" };
 
   //     setData( data => data.map(element => {
   //       return {...element, date: new Date(element.date).toLocaleDateString("en-US", options)}

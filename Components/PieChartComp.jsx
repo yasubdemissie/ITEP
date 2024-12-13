@@ -5,7 +5,7 @@ export default function PieChartComp({ Data }) {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <ResponsiveContainer width={400} height={400}>
+    <ResponsiveContainer style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)" }} width={400} height={400}>
       <PieChart width={800} height={400}>
         <Pie
           data={Data}
