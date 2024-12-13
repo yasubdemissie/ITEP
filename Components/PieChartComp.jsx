@@ -1,17 +1,17 @@
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import propType from "prop-types";
 
 export default function PieChartComp({ Data }) {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <div>
+    <div className="col-span-5">
       <ResponsiveContainer
-        style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)" }}
+        style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)", display: "flex", justifyContent: "right" }}
         width={400}
         height={400}
       >
-        <PieChart width={400} height={400}>
+        <PieChart width={200} height={400}>
           <Pie
             data={Data}
             cx={120}
@@ -30,6 +30,7 @@ export default function PieChartComp({ Data }) {
               />
             ))}
           </Pie>
+          <Tooltip />
           <Legend />
         </PieChart>
       </ResponsiveContainer>

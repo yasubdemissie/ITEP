@@ -1,9 +1,10 @@
 function Controller() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <div>
+      {/* TODO: This is where the control setting goes */}
+      CONTROLLER
+    </div>
+  );
 }
 
-export default Controller
+export default Controller;

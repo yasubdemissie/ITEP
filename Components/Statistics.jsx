@@ -4,11 +4,6 @@ import BarChartComp from "../Components/BarChartComp";
 import { useProvider } from "../hooks/useProvider";
 
 function Statistics() {
-  // const [data, setData] = useState([]);
-  // const [pieData, setPieData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
-
   const { error, isLoading, data, pieData } = useProvider();
 
   if (error)
@@ -21,12 +16,9 @@ function Statistics() {
   if (isLoading) return <div>...loading</div>;
 
   return (
-    <div className="flex flex-wrap">
-      <div className="flex">
-        <PieChartComp Data={pieData} />
-        <BarChartComp data={data} />
-      </div>
-
+    <div className="grid grid-cols-11">
+      <PieChartComp Data={pieData} />
+      <BarChartComp data={data} />
       <AreaChartComp data={data} />
     </div>
   );
