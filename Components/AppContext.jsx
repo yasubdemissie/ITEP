@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import propType from 'prop-types';
+import propType from "prop-types";
 
 const Context = createContext();
 
@@ -31,22 +31,16 @@ export function AppContext({ children }) {
     setIsLoading(false);
   }, []);
 
-  return (
-    <Context.Provider
-      value={{
-        data,
-        setData,
-        pieData,
-        setPieData,
-        isLoading,
-        setIsLoading,
-        error,
-        setError,
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={{
+    data,
+    setData,
+    pieData,
+    setPieData,
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+  }}>{children}</Context.Provider>;
 }
 
 AppContext.propTypes = {

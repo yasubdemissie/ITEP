@@ -5,11 +5,11 @@ import { AppContext } from "../Components/AppContext";
 
 function App() {
   return (
-    <div className="grid h-dvh max-h-fit grid-cols-12 grid-rows-12">
+    <div className="grid h-dvh grid-cols-12 grid-rows-12 space-y-0 gap-y-0">
       <h1 className="col-span-12 max-h-20 row-span-1 h-full text-4xl m-0 shadow-sm">
         {/* HEADER */}
       </h1>
-      <div className="col-span-2 row-auto shadow-lg bg-black"></div>
+      <div className="col-span-2 row-span-11 shadow-lg bg-black"></div>
       <div className="p-4">
         <AppContext>
           <BrowserRouter>
