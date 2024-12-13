@@ -16,10 +16,10 @@ function Statistics() {
   if (isLoading) return <div>...loading</div>;
 
   return (
-    <div className="grid grid-cols-11">
-      <PieChartComp Data={pieData} />
-      <BarChartComp data={data} />
-      <AreaChartComp data={data} />
+    <div className="flex flex-wrap w-full">
+      <AreaChartComp />
+      <PieChartComp />
+      <BarChartComp />
     </div>
   );
 }

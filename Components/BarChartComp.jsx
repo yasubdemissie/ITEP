@@ -1,6 +1,8 @@
 import propType from "prop-types";
 import { Bar, BarChart, ResponsiveContainer, Tooltip } from "recharts";
-function BarChartComp({ data }) {
+import { useProvider } from "../hooks/useProvider";
+function BarChartComp() {
+  const { data } = useProvider();
   return (
     <div className="col-span-5">
       <ResponsiveContainer

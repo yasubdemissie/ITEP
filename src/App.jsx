@@ -17,7 +17,7 @@ function App() {
             </nav>
           </div>
           <div className="col-span-2 row-span-11 shadow-lg bg-slate-100"></div>
-          <div className="p-4">
+          <div className="p-4 col-span-8">
             <Routes>
               <Route index element={<Dashboard />} />
               <Route path="/areachart" element={<AreaChartComp />} />

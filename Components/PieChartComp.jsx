@@ -1,7 +1,9 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import propType from "prop-types";
+import { useProvider } from "../hooks/useProvider";
 
-export default function PieChartComp({ Data }) {
+export default function PieChartComp() {
+  const { pieData: Data } = useProvider();
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
@@ -11,7 +13,7 @@ export default function PieChartComp({ Data }) {
         width={400}
         height={400}
       >
-        <PieChart width={200} height={400}>
+        <PieChart width={300} height={400} margin={{}}>
           <Pie
             data={Data}
             cx={120}
@@ -31,7 +33,7 @@ export default function PieChartComp({ Data }) {
             ))}
           </Pie>
           <Tooltip />
-          <Legend />
+          <Legend layout="vertical" align="right" verticalAlign="" iconType="star"/>
         </PieChart>
       </ResponsiveContainer>
     </div>
