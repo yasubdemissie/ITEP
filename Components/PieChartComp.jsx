@@ -1,4 +1,11 @@
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 import propType from "prop-types";
 import { useProvider } from "../hooks/useProvider";
 
@@ -9,9 +16,15 @@ export default function PieChartComp() {
   return (
     <div className="col-span-5">
       <ResponsiveContainer
-        style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)", display: "flex", justifyContent: "right" }}
+        style={{
+          boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
+          display: "flex",
+          borderRadius: "10px",
+          justifyContent: "right",
+          margin: "10px 30px 30px 10px",
+        }}
         width={400}
-        height={400}
+        height={300}
       >
         <PieChart width={300} height={400} margin={{}}>
           <Pie
@@ -33,7 +46,12 @@ export default function PieChartComp() {
             ))}
           </Pie>
           <Tooltip />
-          <Legend layout="vertical" align="right" verticalAlign="" iconType="star"/>
+          <Legend
+            layout="vertical"
+            align="right"
+            verticalAlign=""
+            iconType="star"
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

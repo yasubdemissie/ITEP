@@ -2,6 +2,7 @@ import PieChartComp from "../Components/PieChartComp";
 import AreaChartComp from "../Components/AreaChart";
 import BarChartComp from "../Components/BarChartComp";
 import { useProvider } from "../hooks/useProvider";
+import UsageList from "./UsageList";
 
 function Statistics() {
   const { error, isLoading, data, pieData } = useProvider();
@@ -16,10 +17,13 @@ function Statistics() {
   if (isLoading) return <div>...loading</div>;
 
   return (
-    <div className="flex flex-wrap w-full">
+    <div className="grid">
+      <div className="flex">
+        <PieChartComp />
+        {/* <BarChartComp /> */}
+        <UsageList />
+      </div>
       <AreaChartComp />
-      <PieChartComp />
-      <BarChartComp />
     </div>
   );
 }

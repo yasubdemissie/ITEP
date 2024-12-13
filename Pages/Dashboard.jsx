@@ -2,7 +2,7 @@ import Statistics from "../Components/Statistics";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="w-full">
       <Statistics />
     </div>
   );

@@ -8,7 +8,7 @@ function BarChartComp() {
       <ResponsiveContainer
         style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)" }}
         width={400}
-        height={200}
+        height={300}
       >
         <BarChart width={150} height={40} data={data}>
           <Bar dataKey="energy_generated" fill="#8884d8" />

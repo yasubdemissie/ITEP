@@ -2,6 +2,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -27,28 +28,37 @@ function AreaChartComp() {
     <div className="grid-span-5">
       <ResponsiveContainer
         style={{
-          boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+          boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
           borderRadius: "10px",
+          margin: "10px 30px 30px 10px",
+          display: "flex",
         }}
-        width={500}
-        height={200}
+        width={700}
+        height={300}
       >
+        <div className="grid">
+          <span className="text-center text-xl font-semibold italic">Energy Generated</span>
+          <span>Energy Wasted</span>
+          <span>Energy Consumed</span>
+          <span className="text-center text-xl font-semibold italic">Energy vaporized</span>
+        </div>
         <AreaChart
           width={500}
           height={200}
           data={updatedData}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 30, left: 20, bottom: 0 }}
         >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#d53232" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#c78484" stopOpacity={0} />
+              <stop offset="5%" stopColor="#2929ef" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#009e57" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="date" />
           <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
+          <Legend align="right" verticalAlign="top" />
           <Area
             type="monotone"
             dataKey="energy_generated"

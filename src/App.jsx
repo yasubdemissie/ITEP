@@ -17,11 +17,11 @@ function App() {
             </nav>
           </div>
           <div className="col-span-2 row-span-11 shadow-lg bg-slate-100"></div>
-          <div className="p-4 col-span-8">
+          <div className="p-4 col-span-10">
             <Routes>
               <Route index element={<Dashboard />} />
-              <Route path="/areachart" element={<AreaChartComp />} />
-              <Route path="/areachart" element={<Controller />} />
+              {/* <Route path="/areachart" element={<AreaChartComp />} /> */}
+              <Route path="/controllers" element={<Controller />} />
             </Routes>
           </div>
         </div>
