@@ -6,7 +6,7 @@ export default function PieChartComp({ Data }) {
 
   return (
     <ResponsiveContainer style={{ boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)" }} width={400} height={400}>
-      <PieChart width={800} height={400}>
+      <PieChart width={400} height={400}>
         <Pie
           data={Data}
           cx={120}

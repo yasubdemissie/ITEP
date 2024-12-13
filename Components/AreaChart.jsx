@@ -7,10 +7,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import propType from "prop-types";
-import { useState } from "react";
-import { useEffect } from "react";
-function AreaChartComp({ data }) {
+import { useState, useEffect } from "react";
+import { useProvider } from "../hooks/useProvider";
+function AreaChartComp() {
+  const { data } = useProvider();
   const [updatedData, setUpdatedData] = useState([]);
 
   useEffect(() => {
@@ -56,9 +56,5 @@ function AreaChartComp({ data }) {
     </ResponsiveContainer>
   );
 }
-
-AreaChartComp.propTypes = {
-  data: propType.array,
-};
 
 export default AreaChartComp;
