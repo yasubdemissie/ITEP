@@ -3,6 +3,7 @@ import Dashboard from "../Pages/Dashboard";
 import Controller from "../Pages/Controller";
 import AreaChartComp from "../Components/AreaChart";
 import { AppContext } from "../Components/AppContext";
+import List from "../Components/List";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <BrowserRouter>
         <div className="grid h-dvh grid-cols-12 grid-rows-12 space-y-0 gap-y-0">
           <div className="col-span-12 max-h-20 row-span-1 h-full m-0 shadow-sm flex justify-between px-5">
-            <div>Logo</div>
+            <div>logo</div>
             <nav className="flex items-center justify-between h-full w-1/5">
               <NavLink to={"/"}>Dashboard</NavLink>
               <NavLink to={"/controllers"}>Controllers</NavLink>

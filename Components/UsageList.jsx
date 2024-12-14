@@ -1,4 +1,5 @@
 import { useProvider } from "../hooks/useProvider";
+import List from "./List";
 
 function UsageList() {
   const { data } = useProvider();
@@ -8,9 +9,9 @@ function UsageList() {
       {data.map((item, index) => (
         <li
           key={index}
-        //   className="text-center shadow-sm p-2 w-[400px] justify-between"
+            className="text-center shadow-sm p-2 w-full"
         >
-          <span>{item.date}</span> - <span className="text-red-500">4000</span>
+          <List item={item} />
         </li>
       ))}
     </ul>
