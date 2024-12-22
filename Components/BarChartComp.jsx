@@ -19,6 +19,8 @@ function BarChartComp() {
   );
 }
 
+
+
 BarChartComp.propTypes = {
   data: propType.array,
 };
