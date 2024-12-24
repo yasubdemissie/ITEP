@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import './controller.css';
+
 const ControlPanel = () => {
   const [lightStatus, setLightStatus] = useState(true);
   const [energyGenerated, setEnergyGenerated] = useState(12.5); // Sample initial data
@@ -15,33 +15,41 @@ const ControlPanel = () => {
   const [isAlertEnabled, setIsAlertEnabled] = useState(true);
   const [chargingStatus, setChargingStatus] = useState(false);
 
-  // Function to toggle light status
+  // Function to send a command to the Arduino via the Python server
+  const sendCommandToArduino = async (command) => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/send-command', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ command }),
+      });
+      const data = await response.json();
+      console.log(data.message || data.error);
+    } catch (error) {
+      console.error("Error sending command:", error);
+    }
+  };
+
+  // Function to toggle light status and send a command
   const toggleLight = () => {
+    const command = lightStatus ? "TURN_OFF_LIGHT" : "TURN_ON_LIGHT";
+    sendCommandToArduino(command);
     setLightStatus(!lightStatus);
   };
 
-  // Function to handle energy threshold check
-  const checkEnergyThreshold = () => {
-    if (energyGenerated < energyThreshold) {
-      setAlerts([...alerts, `Energy generated is below ${energyThreshold}W, consider adjusting system.`]);
-    }
-  };
-
-  // Function to handle automatic light scheduling
-  const handleAutoLightSchedule = () => {
-    if (autoLightSchedule) {
-      if (energyGenerated > energyThreshold && batteryPercentage > 50) {
-        setLightStatus(true);
-      } else {
-        setLightStatus(false);
-      }
-    }
-  };
-
-  // Function to toggle charging status
+  // Function to handle charging status toggle
   const toggleCharging = () => {
+    const command = chargingStatus ? "STOP_CHARGING" : "START_CHARGING";
+    sendCommandToArduino(command);
     setChargingStatus(!chargingStatus);
     setAlerts([...alerts, chargingStatus ? 'Charging stopped' : 'Charging started']);
+  };
+
+  // Function to check energy threshold
+  const checkEnergyThreshold = () => {
+    if (energyGenerated < energyThreshold) {
+      setAlerts([...alerts, `Energy generated is below ${energyThreshold}W, consider adjusting the system.`]);
+    }
   };
 
   return (
@@ -96,7 +104,8 @@ const ControlPanel = () => {
             checked={autoLightSchedule}
             onChange={() => {
               setAutoLightSchedule(!autoLightSchedule);
-              handleAutoLightSchedule();
+              if (autoLightSchedule) sendCommandToArduino("ENABLE_AUTO_LIGHT_SCHEDULE");
+              else sendCommandToArduino("DISABLE_AUTO_LIGHT_SCHEDULE");
             }}
           />
         </div>
@@ -160,7 +169,3 @@ const ControlPanel = () => {
 };
 
 export default ControlPanel;
-
-
-
-
