@@ -1,26 +1,37 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import serial
+import time
 
 app = Flask(__name__)
 CORS(app)  # This will allow all domains to make requests
 
-# Your existing code here
+BT_PORT = 'COM7'
+BAUD_RATE = 9600
+
 @app.route('/send-command', methods=['POST'])
 def send_command():
-    command = request.json.get('command')
+    command = request.json.get('command', '').strip()
+    if not command:
+        return jsonify({"error": "No command provided"}), 400
+
     print(f"Command received by Python server: {command}")
   
-    
-    # Send command to Arduino via serial
+    # Send command to Arduino via Bluetooth
     try:
-        print("opening serial port")
-        arduino = serial.Serial("COM7", 9600, timeout=1)
-        print(f"Sending command: {command}")
-        arduino.write(command.encode())  # Send the command to Arduino
+        arduino = serial.Serial(BT_PORT, BAUD_RATE, timeout=2)  # Adjust timeout if needed
+        time.sleep(2)  # Allow time for Arduino to reset on serial connection
+        arduino.write((command + '\n').encode())  # Send command with newline
+
+        response = arduino.readline().decode().strip()  # Read the response from Arduino
+        print(f"Arduino response: {response}")
+
+        # Save the response to a text file
+        with open('arduino_data.txt', 'a') as file:
+            file.write(f"{response}\n")
+
         arduino.close()
-        print("Command sent to Arduino")
-        return jsonify({"message": f"Command {command} sent to Arduino."}), 200
+        return jsonify({"message": response}), 200
     except Exception as e:
         print(f"Error sending command to Arduino: {e}")
         return jsonify({"error": str(e)}), 500
