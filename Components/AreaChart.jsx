@@ -16,10 +16,13 @@ function AreaChartComp() {
 
   useEffect(() => {
     const options = { weekday: "short" };
+    console.log(data)
     setUpdatedData(
       data.map((item) => ({
         ...item,
-        date: new Date(item.date).toLocaleDateString("en-US", options),
+        date: new Date(item.time).toLocaleDateString("en-US", options),
+        energy_generated:item.power,
+        step_counter:item.step,
       }))
     );
   }, [data]);
@@ -38,9 +41,7 @@ function AreaChartComp() {
       >
         <div className="grid">
           <span className="text-center text-xl font-semibold italic">Energy Generated</span>
-          <span>Energy Wasted</span>
-          <span>Energy Consumed</span>
-          <span className="text-center text-xl font-semibold italic">Energy vaporized</span>
+        
         </div>
         <AreaChart
           width={500}
